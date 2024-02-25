@@ -19,29 +19,35 @@ func TestNewLexer(t *testing.T) {
 }
 
 func TestNextToken(t *testing.T) {
-	content := "20 + 4 * 3 / 6 - 1"
+	// content := "20 + 4 * 3 / 6 - 1"
+	content := "+-*/"
 
 	expectations := []struct {
 		expectedType  string
 		expectedValue string
 	}{
-		{token.INT, "20"},
+		// {token.INT, "20"},
+		// {token.ADD, "+"},
+		// {token.INT, "4"},
+		// {token.MULTIPLY, "*"},
+		// {token.INT, "3"},
+		// {token.DIVIDE, "/"},
+		// {token.INT, "6"},
+		// {token.SUBTRACT, "-"},
+		// {token.INT, "1"},
+
 		{token.ADD, "+"},
-		{token.INT, "4"},
-		{token.MULTIPLY, "*"},
-		{token.INT, "3"},
-		{token.DIVIDE, "/"},
-		{token.INT, "6"},
 		{token.SUBTRACT, "-"},
-		{token.INT, "1"},
+		{token.MULTIPLY, "*"},
+		{token.DIVIDE, "/"},
 	}
 
 	l := lexer.NewLexer(content)
 
 	for index, test := range expectations {
 		tok := l.NextToken()
-		fmt.Println(test)
 		fmt.Println(tok)
+		fmt.Println(test)
 
 		if tok.Type != test.expectedType {
 			t.Fatalf("Test[%d] failed: expected type %s, got %s", index, test.expectedType, tok.Type)

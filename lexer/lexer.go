@@ -46,6 +46,7 @@ func (l *Lexer) NextToken() token.Token {
 		}
 	}
 
+	l.ReadChar()
 	return tok
 }
 
