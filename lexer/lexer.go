@@ -23,11 +23,12 @@ func (l *Lexer) ReadChar() {
 		l.Char = 0
 	} else {
 		l.Char = l.Content[l.NextPosition]
-		l.NextPosition += 1
 	}
+	l.NextPosition += 1
 }
 
 func (l *Lexer) NextToken() token.Token {
+	l.skipWhitespace()
 	var tok token.Token
 	switch l.Char {
 	case '+':
@@ -55,7 +56,7 @@ func createToken(tokenType string, value byte) token.Token {
 }
 
 func isDigit(char byte) bool {
-	return char >= 0 && char <= 9
+	return char >= '0' && char <= '9'
 }
 
 func (l *Lexer) getNum() string {
@@ -67,4 +68,10 @@ func (l *Lexer) getNum() string {
 	end_location := l.NextPosition - 1
 
 	return l.Content[start_location:end_location]
+}
+
+func (l *Lexer) skipWhitespace() {
+	for l.Char == ' ' {
+		l.ReadChar()
+	}
 }
