@@ -31,6 +31,10 @@ func (l *Lexer) NextToken() token.Token {
 	l.skipWhitespace()
 	var tok token.Token
 	switch l.Char {
+	case '(':
+		tok = createToken(token.LPAREN, l.Char)
+	case ')':
+		tok = createToken(token.RPAREN, l.Char)
 	case '+':
 		tok = createToken(token.ADD, l.Char)
 	case '-':
@@ -39,11 +43,16 @@ func (l *Lexer) NextToken() token.Token {
 		tok = createToken(token.MULTIPLY, l.Char)
 	case '/':
 		tok = createToken(token.DIVIDE, l.Char)
+	case 0:
+		tok.Type = token.EOF
+		tok.Value = ""
 	default:
 		if isDigit(l.Char) {
 			tok.Type = token.INT
 			tok.Value = l.getNum()
 			return tok
+		} else {
+			tok = createToken(token.ILLEGAL, l.Char)
 		}
 	}
 

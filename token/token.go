@@ -7,6 +7,9 @@ type Token struct {
 
 /* token types */
 const (
+	LPAREN = "("
+	RPAREN = ")"
+
 	ADD      = "+"
 	SUBTRACT = "-"
 	MULTIPLY = "*"
@@ -15,4 +18,7 @@ const (
 
 	INT = "INT"
 	// TODO: FLOAT = "FLOAT"
+
+	EOF     = "EOF"
+	ILLEGAL = "ILLEGAL"
 )
