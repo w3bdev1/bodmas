@@ -14,7 +14,7 @@ const (
 	SUBTRACT = "-"
 	MULTIPLY = "*"
 	DIVIDE   = "/"
-	// TODO: EXPONENT = "^"
+	EXPONENT = "^"
 
 	INT = "INT"
 	// TODO: FLOAT = "FLOAT"

@@ -32,7 +32,7 @@ func TestNextToken(t *testing.T) {
 		{token.RPAREN, ")"},
 		{token.MULTIPLY, "*"},
 		{token.INT, "3"},
-		{token.ILLEGAL, "^"},
+		{token.EXPONENT, "^"},
 		{token.INT, "2"},
 		{token.DIVIDE, "/"},
 		{token.INT, "6"},
